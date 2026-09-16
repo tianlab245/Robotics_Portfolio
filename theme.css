@@ -1,0 +1,33 @@
+/* ============================================================ */
+/* Site theme — shared colors, fonts, and sizes                 */
+/*                                                                */
+/* Both index.css and project.css import this file, so changing */
+/* a value here updates the whole site at once. To re-theme the  */
+/* site (new colors, new font), edit the variables below only —  */
+/* don't hardcode new colors directly in index.css/project.css.  */
+/* ============================================================ */
+
+:root {
+    /* Brand colors */
+    --color-primary: #4a7a6e;       /* deep teal-green: headers, nav, links */
+    --color-primary-dark: #35594f;  /* darker teal: hover/active states */
+    --color-accent: #e0a66a;        /* warm orange: cards, highlights */
+    --color-accent-dark: #c98a49;   /* darker orange: hover states */
+
+    /* Text */
+    --color-text: #2d2420;          /* main body text */
+    --color-text-muted: #4d3a2c;    /* secondary text, links on light bg */
+    --color-text-on-dark: #ffffff;  /* text placed over photos/dark overlays */
+
+    /* Backgrounds */
+    --color-bg-page: #f4f4f4;       /* page background on activity/project pages */
+    --color-bg-card: #ffffff;       /* white card/container background */
+    --color-bg-overlay: rgba(74, 122, 110, 0.5); /* translucent header/hero overlay */
+
+    /* Typography */
+    --font-body: Arial, Helvetica, sans-serif;
+
+    /* Shape */
+    --radius: 10px;
+    --container-max: 800px;
+}

@@ -1,0 +1,216 @@
+@import url("./theme.css");
+
+body {
+    background-color: var(--color-primary);
+    font-family: var(--font-body);
+    margin: 20px;
+}
+
+/* **************************** */
+/* Style for the header section */
+/* **************************** */
+
+.header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+    background: var(--color-bg-overlay);
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: var(--color-text-on-dark);
+    border-radius: var(--radius);
+}
+
+.header .name {
+    text-align: left;
+    font-size: 1.5em;
+}
+
+.header .navbar {
+    display: flex;
+    gap: 15px;
+    font-size: 1.5em;
+}
+
+.header .navbar a {
+    text-decoration: none;
+    color: var(--color-text-on-dark);
+    padding: 10px;
+}
+
+/* ************************** */
+/* Style for the home section */
+/* ************************** */
+
+.home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem 10% 2rem;
+    color: var(--color-text-on-dark);
+}
+
+.home-content {
+    max-width: 600px;
+}
+
+.home-content h1 {
+    position: relative;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    background: var(--color-bg-overlay);
+    padding: 5px;
+    border-radius: var(--radius);
+}
+
+.home-content p {
+    position: relative;
+    font-size: 1.5em;
+    margin: 20px 0 40px;
+    background: var(--color-bg-overlay);
+    padding: 5px;
+    border-radius: var(--radius);
+}
+
+.socials {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    width: fit-content;
+    background: var(--color-bg-overlay);
+    padding: 10px 15px;
+    border-radius: var(--radius);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-on-dark);
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.social-link:hover {
+    color: var(--color-accent);
+}
+
+.social-link svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+/* ************************************* */
+/* Style for the project listing section */
+/* ************************************* */
+
+.portfolio {
+    padding-block: 5rem 2rem;
+    max-width: 100%;
+    margin-inline: 1.5rem;
+
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: stretch;
+}
+
+.project-card {
+    padding: 5px;
+    margin: 5px;
+    background-color: var(--color-accent);
+    border-radius: var(--radius);
+    text-align: center;
+}
+
+.project-link {
+    color: var(--color-text-muted);
+}
+
+.project-title {
+    font-size: 1.5em;
+}
+
+.project-desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.project-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 4px);
+}
+
+/* ***************************** */
+/* Responsive: tablet and mobile */
+/* ***************************** */
+
+@media (max-width: 900px) {
+    .portfolio {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home-content h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        width: 92%;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .header .name {
+        font-size: 1.1em;
+    }
+
+    .header .navbar {
+        font-size: 1em;
+        gap: 10px;
+    }
+
+    .home {
+        padding: 7rem 6% 2rem;
+    }
+
+    .home-content h1 {
+        font-size: 30px;
+    }
+
+    .home-content p {
+        font-size: 1.1em;
+    }
+
+    .social-link {
+        font-size: 1em;
+    }
+
+    .social-link svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .portfolio {
+        grid-template-columns: 1fr;
+        margin-inline: 0.5rem;
+    }
+}
