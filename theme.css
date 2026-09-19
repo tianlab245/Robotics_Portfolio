@@ -7,27 +7,36 @@
 /* don't hardcode new colors directly in index.css/project.css.  */
 /* ============================================================ */
 
+/* Web fonts. Swap the two families here to change the whole site. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@200;300;400;500&display=swap');
+
+/* Sizes include padding and borders, so widths stay predictable. */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 :root {
-    /* Brand colors */
-    --color-primary: #4a7a6e;       /* deep teal-green: headers, nav, links */
-    --color-primary-dark: #35594f;  /* darker teal: hover/active states */
-    --color-accent: #e0a66a;        /* warm orange: cards, highlights */
-    --color-accent-dark: #c98a49;   /* darker orange: hover states */
+    /* Brand colors — warm, muted "autumn stone" palette */
+    --color-primary: #33302b;       /* deep warm charcoal: nav bar, dark surfaces */
+    --color-primary-dark: #22201c;  /* near-black: hover/active states */
+    --color-accent: #b5845c;        /* muted clay: highlights, links, hover */
+    --color-accent-dark: #97693f;   /* deeper clay: hover states */
 
     /* Text */
-    --color-text: #2d2420;          /* main body text */
-    --color-text-muted: #4d3a2c;    /* secondary text, links on light bg */
-    --color-text-on-dark: #ffffff;  /* text placed over photos/dark overlays */
+    --color-text: #2b2723;          /* main body text: warm near-black */
+    --color-text-muted: #7a6f63;    /* warm taupe: secondary text, captions */
+    --color-text-on-dark: #f6f1e9;  /* warm off-white for text on dark surfaces */
 
     /* Backgrounds */
-    --color-bg-page: #f4f4f4;       /* page background on activity/project pages */
-    --color-bg-card: #ffffff;       /* white card/container background */
-    --color-bg-overlay: rgba(74, 122, 110, 0.5); /* translucent header/hero overlay */
+    --color-bg-page: #f6f1e9;       /* warm bone: page background */
+    --color-bg-card: #fffcf7;       /* soft ivory: card/container background */
+    --color-border: rgba(43, 39, 35, 0.12); /* hairline borders on cards */
 
     /* Typography */
-    --font-body: Arial, Helvetica, sans-serif;
+    --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --font-body: "Jost", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
     /* Shape */
-    --radius: 10px;
-    --container-max: 800px;
+    --radius: 6px;
+    --container-max: 820px;
 }

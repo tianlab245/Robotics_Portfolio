@@ -1,9 +1,11 @@
 @import url("./theme.css");
 
 body {
-    background-color: var(--color-primary);
+    background-color: var(--color-bg-page);
     font-family: var(--font-body);
-    margin: 20px;
+    font-weight: 300;
+    color: var(--color-text);
+    margin: 0;
 }
 
 /* **************************** */
@@ -12,36 +14,48 @@ body {
 
 .header {
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75%;
-    background: var(--color-bg-overlay);
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-primary);
     z-index: 1000;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 18px 6%;
     color: var(--color-text-on-dark);
-    border-radius: var(--radius);
 }
 
 .header .name {
     text-align: left;
-    font-size: 1.5em;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
 }
 
 .header .navbar {
     display: flex;
-    gap: 15px;
-    font-size: 1.5em;
+    gap: 2.5rem;
 }
 
 .header .navbar a {
     text-decoration: none;
     color: var(--color-text-on-dark);
-    padding: 10px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.header .navbar a:hover {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
 }
 
 /* ************************** */
@@ -52,94 +66,193 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 6rem 10% 2rem;
-    color: var(--color-text-on-dark);
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 8rem 8% 4rem;
+    color: var(--color-text);
 }
 
 .home-content {
-    max-width: 600px;
+    max-width: 620px;
+}
+
+.home-eyebrow {
+    margin: 0 0 1.5rem;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
 }
 
 .home-content h1 {
-    position: relative;
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 1.2;
-    background: var(--color-bg-overlay);
-    padding: 5px;
-    border-radius: var(--radius);
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
 }
 
 .home-content p {
-    position: relative;
-    font-size: 1.5em;
-    margin: 20px 0 40px;
-    background: var(--color-bg-overlay);
-    padding: 5px;
-    border-radius: var(--radius);
+    max-width: 46ch;
+    margin: 1.75rem 0 2.5rem;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    letter-spacing: 0.01em;
+    color: var(--color-text-muted);
 }
 
 .socials {
-    position: relative;
     display: flex;
-    gap: 20px;
+    gap: 2rem;
     width: fit-content;
-    background: var(--color-bg-overlay);
-    padding: 10px 15px;
-    border-radius: var(--radius);
 }
 
 .social-link {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: var(--color-text-on-dark);
+    gap: 10px;
+    color: var(--color-text);
     text-decoration: none;
-    font-size: 1.1em;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--color-border);
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .social-link:hover {
     color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
 }
 
 .social-link svg {
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     fill: currentColor;
+}
+
+/* Cartoon elephant + person illustration in the home section */
+
+.home-scene {
+    position: relative;
+    width: min(520px, 42vw);
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+}
+
+.person-figure {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 62%;
+    height: auto;
+}
+
+.elephant-figure {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 58%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.elephant-figure:hover,
+.elephant-figure:focus-visible {
+    transform: scale(1.06);
+}
+
+.elephant-figure.spinning {
+    animation: spin-elephant 0.7s ease-in-out;
+}
+
+@keyframes spin-elephant {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* ************************************* */
 /* Style for the project listing section */
 /* ************************************* */
 
+.section-heading {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 8% 0;
+}
+
+.section-eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.section-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    font-weight: 300;
+    line-height: 1.1;
+}
+
 .portfolio {
-    padding-block: 5rem 2rem;
-    max-width: 100%;
-    margin-inline: 1.5rem;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: 3rem 8% 6rem;
 
     display: grid;
-    gap: 1.5rem;
+    gap: 2rem;
     grid-template-columns: repeat(3, 1fr);
     justify-items: stretch;
 }
 
 .project-card {
-    padding: 5px;
-    margin: 5px;
-    background-color: var(--color-accent);
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius);
-    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(43, 39, 35, 0.1);
 }
 
 .project-link {
-    color: var(--color-text-muted);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
 }
 
 .project-title {
-    font-size: 1.5em;
+    margin: 1.5rem 1.5rem 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.25;
 }
 
 .project-desc {
+    margin: 0 1.5rem 1.75rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -147,12 +260,13 @@ body {
     -webkit-box-orient: vertical;
 }
 
+/* The image sits first in the card, above the title. */
 .project-img {
+    order: -1;
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
-    border-radius: calc(var(--radius) - 4px);
 }
 
 /* ***************************** */
@@ -164,53 +278,52 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .home-content h1 {
-        font-size: 40px;
+    .home-scene {
+        width: min(340px, 40vw);
     }
 }
 
 @media (max-width: 600px) {
     .header {
-        width: 92%;
         flex-direction: column;
         justify-content: center;
-        gap: 6px;
+        gap: 10px;
         text-align: center;
-        padding: 8px;
+        padding: 14px 6%;
     }
 
     .header .name {
-        font-size: 1.1em;
+        font-size: 1rem;
     }
 
     .header .navbar {
-        font-size: 1em;
-        gap: 10px;
+        gap: 1.75rem;
     }
 
     .home {
-        padding: 7rem 6% 2rem;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8rem 8% 3rem;
     }
 
-    .home-content h1 {
-        font-size: 30px;
+    .home-content {
+        width: 100%;
+    }
+
+    .home-scene {
+        width: min(300px, 78vw);
     }
 
     .home-content p {
-        font-size: 1.1em;
+        margin: 1.5rem 0 2rem;
     }
 
-    .social-link {
-        font-size: 1em;
-    }
-
-    .social-link svg {
-        width: 18px;
-        height: 18px;
+    .section-heading {
+        padding-top: 4rem;
     }
 
     .portfolio {
         grid-template-columns: 1fr;
-        margin-inline: 0.5rem;
+        padding-bottom: 4rem;
     }
 }
