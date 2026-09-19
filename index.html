@@ -25,6 +25,7 @@
     <!-- Introduction Section -->
     <section class="home" style="background:url(./images/header.jpg) no-repeat; background-size: cover; background-position: center;">
         <div class="home-content">
+            <p class="home-eyebrow">Engineering Portfolio</p>
             <h1>Hi, I'm Piyawat Kongboonma</h1>
             <p>About Me: I'm a first-year engineering student documenting my coursework in this portfolio, from in-class design activities to semester-long robotics projects.</p>
 
@@ -40,10 +41,21 @@
                 </a>
             </div>
         </div>
+
+        <!-- Cartoon Tufts elephant mascot and person illustration -->
+        <div class="home-scene">
+            <img src="./images/person.png" alt="Cartoon illustration of a person with glasses and dark hair, wearing a fall-colored striped sweater" class="person-figure">
+            <img src="./images/elephant.png" alt="Cute cartoon baby elephant wearing a blue scarf, representing the Tufts University mascot. Click to make it spin." class="elephant-figure" id="elephant" tabindex="0" role="button">
+        </div>
     </section>
 
     <!-- Portfolio Section -->
     <a name="portfolio"></a>
+    <header class="section-heading">
+        <p class="section-eyebrow">Activities &amp; Projects</p>
+        <h2 class="section-title">Portfolio</h2>
+    </header>
+
     <section class="portfolio">
 
         <!-- PROJECT -->
@@ -101,6 +113,25 @@
         </article>
 
     </section>
-    
+
+    <!-- Click the elephant mascot to make it spin -->
+    <script>
+        var elephant = document.getElementById("elephant");
+
+        function spinElephant() {
+            elephant.classList.add("spinning");
+        }
+
+        elephant.addEventListener("click", spinElephant);
+        elephant.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                spinElephant();
+            }
+        });
+        elephant.addEventListener("animationend", function () {
+            elephant.classList.remove("spinning");
+        });
+    </script>
 </body>
 </html>

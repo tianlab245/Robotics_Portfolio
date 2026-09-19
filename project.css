@@ -3,7 +3,9 @@
 body {
     background-color: var(--color-bg-page);
     font-family: var(--font-body);
-    margin: 20px;
+    font-weight: 300;
+    color: var(--color-text);
+    margin: 0;
 }
 
 /* **************************** */
@@ -12,36 +14,47 @@ body {
 
 .header {
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 75%;
-    max-width: var(--container-max);
-    background: rgba(250, 250, 250, 0.9);
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-primary);
     z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px;
-    color: var(--color-primary);
-    border-radius: var(--radius);
+    padding: 18px 6%;
+    color: var(--color-text-on-dark);
 }
 
 .header .name {
     text-align: left;
-    font-size: 1.5em;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
 }
 
 .header .navbar {
     display: flex;
-    gap: 15px;
-    font-size: 1.5em;
+    gap: 2.5rem;
 }
 
 .header .navbar a {
     text-decoration: none;
-    color: var(--color-primary);
-    padding: 10px;
+    color: var(--color-text-on-dark);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.header .navbar a:hover {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
 }
 
 /* *********************************** */
@@ -50,21 +63,34 @@ body {
 
 .proj-container {
     max-width: var(--container-max);
-    margin: auto;
-    margin-top: 90px;
+    margin: 9rem auto 5rem;
     background: var(--color-bg-card);
-    padding: 20px;
+    border: 1px solid var(--color-border);
+    padding: 3.5rem;
     border-radius: var(--radius);
 }
 
 .proj-header {
     text-align: center;
-    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--color-text);
+}
+
+h1.proj-header {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: 0.02em;
+}
+
+h2.proj-header {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
 }
 
 .proj-img-container {
     text-align: center;
-    margin: 20px 0;
+    margin: 2rem 0;
 }
 
 .proj-img-container img {
@@ -74,12 +100,13 @@ body {
 }
 
 .proj-desc {
-    margin: 20px 0;
-    line-height: 1.6;
+    margin: 1.5rem 0;
+    line-height: 1.9;
 }
 
 .proj-desc p {
-    color: var(--color-text);
+    color: var(--color-text-muted);
+    letter-spacing: 0.01em;
 }
 
 /* Optional block: a labeled code sample. Delete this block on pages   */
@@ -89,12 +116,24 @@ body {
     margin: auto;
 }
 
-.proj-code pre:has(code), pre:has(code) {
-    background-color: black;
-    color: white;
-    border-radius: 8px;
-    padding: 4px;
+.proj-code h3 {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
 }
+
+.proj-code pre:has(code), pre:has(code) {
+    background-color: var(--color-primary);
+    color: var(--color-text-on-dark);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    font-size: 0.85rem;
+    line-height: 1.7;
+}
+
 pre code, pre code {
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -105,8 +144,8 @@ pre code, pre code {
 .proj-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-    margin: 20px 0;
+    gap: 12px;
+    margin: 2rem 0;
 }
 
 .proj-gallery img {
@@ -123,7 +162,7 @@ pre code, pre code {
     position: relative;
     width: 100%;
     padding-top: 56.25%;
-    margin: 20px 0;
+    margin: 2rem 0;
     border-radius: var(--radius);
     overflow: hidden;
 }
@@ -143,26 +182,24 @@ pre code, pre code {
 
 @media (max-width: 600px) {
     .header {
-        width: 92%;
-        padding: 6px;
+        padding: 14px 6%;
     }
 
     .header .name {
-        font-size: 1.1em;
+        font-size: 1rem;
     }
 
     .header .navbar {
-        font-size: 1.1em;
-        gap: 8px;
+        gap: 1.75rem;
     }
 
     .proj-container {
-        margin-top: 80px;
-        padding: 14px;
+        margin: 7rem 1rem 3rem;
+        padding: 1.75rem;
     }
 
-    .proj-header {
-        font-size: 1.3em;
+    h2.proj-header {
+        font-size: 1.4rem;
     }
 
     .proj-gallery img {
