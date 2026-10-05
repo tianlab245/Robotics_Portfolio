@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Project 7: Square Drawing Robot</title>
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+
+    <!-- Header and Navigation Section -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="./index.html" class="active">Home</a>
+        </nav>
+    </header>
+
+    <!-- Project Information -->
+    <div class="proj-container">
+
+        <h1 class='proj-header'>Project Portfolio</h1>
+
+        <div class="proj-img-container">
+            <img src="./images/squaredrawing/hero.jpeg" alt="LEGO Spike Prime drawing robot with a marker held upright by a rubber band between two blue drive wheels, next to the hub.">
+        </div>
+
+        <h2 class='proj-header'>Project 7: Square Drawing Robot</h2>
+
+        <div class="proj-desc">
+            <p><strong>Objective:</strong> For a square drawing competition, build a robot that draws a "perfect" square and comes back to its starting position.</p>
+            <p>I had to change my design many times because I didn't consider the center of rotation until I had completed my first design. I figured out that the pen should be exactly at the center of rotation. This makes the square as accurate as possible and keeps the pen from drawing extra marks that are not part of the square.</p>
+            <p>I ended up using the hub's yaw value (the angle it has turned) so the robot can run on any surface and still turn 90 degrees.</p>
+        </div>
+
+        <div class="proj-gallery">
+            <img src="./images/squaredrawing/pen-mount.jpeg" alt="Back view of the robot showing the marker mounted in the middle, between the two drive wheels.">
+            <img src="./images/squaredrawing/overhead-view.jpeg" alt="Overhead view of the robot showing the marker, the hub, and the small front wheel.">
+            <img src="./images/squaredrawing/top-view.jpeg" alt="Top-down view of the robot showing the drive wheels, hub, and marker holder.">
+        </div>
+
+        <div class="proj-desc">
+            <p>Here is my CodeRobots.ai session, followed by the final code.</p>
+        </div>
+
+        <div class="proj-img-container">
+            <img src="./images/squaredrawing/code-screenshot.png" alt="Screenshot of the CodeRobots.ai editor with the square-drawing code, next to the AI chat explaining that the right motor is on port C and that the robot turns left until the gyro measures a 90 degree change.">
+        </div>
+
+        <div class="proj-code">
+            <h3>Code:</h3>
+            <pre><code>
+# Setup: left drive motor on port A, right drive motor on port C.
+# The front wheel rolls freely and is not part of the motor pair.
+from hub import port, motion_sensor
+import runloop
+import motor_pair
+
+# Adjust the side length and speeds for your robot.
+SIDE_DEGREES = 230       # Motor rotation for each side of the square.
+DRIVE_SPEED = 100        # Driving speed in degrees per second.
+TURN_SPEED = 50         # Slower turning helps limit overshoot.
+TURN_TARGET = 900        # 90 degrees of yaw change, in decidegrees.
+
+async def main():
+    # Connect the two drive motors as a pair.
+    motor_pair.pair(motor_pair.PAIR_1, port.A, port.C)
+
+    # Trace four sides, starting from the bottom right and facing up.
+    for side in range(4):
+        # Drive one side before making the next left turn.
+        await motor_pair.move_for_degrees(
+            motor_pair.PAIR_1,
+            SIDE_DEGREES,
+            0,
+            velocity=DRIVE_SPEED
+        )
+
+        # Set the current direction to zero before this turn.
+        motion_sensor.reset_yaw(0)
+        await runloop.sleep_ms(100)
+
+        # Turn left and keep checking how far yaw has changed.
+        motor_pair.move_tank(motor_pair.PAIR_1, -TURN_SPEED, TURN_SPEED)
+        while abs(motion_sensor.tilt_angles()[0]) &lt; TURN_TARGET:
+            await runloop.sleep_ms(5)
+
+        # Stop turning before driving the next side.
+        motor_pair.stop(motor_pair.PAIR_1)
+
+    # Free the motor ports after the fourth turn.
+    motor_pair.unpair(motor_pair.PAIR_1)
+
+runloop.run(main())
+
+</code></pre></div>
+
+        <div class="proj-video-container">
+            <iframe src="https://www.youtube.com/embed/0h4XMoOfuGw" title="Square drawing robot demonstration video" allowfullscreen></iframe>
+        </div>
+
+    </div>
+    <!-- End Project Information -->
+
+</body>
+</html>
