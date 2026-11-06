@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Project 12: Fruit Scanner</title>
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+
+    <!-- Header and Navigation Section -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="./index.html" class="active">Home</a>
+        </nav>
+    </header>
+
+    <!-- Project Information -->
+    <div class="proj-container">
+
+        <h1 class='proj-header'>Project Portfolio</h1>
+
+        <div class="proj-img-container">
+            <img src="./images/fruit_scanner/hero.jpeg" alt="Top-down view of the LEGO Spike Prime hub with its buttons facing up, a pink rectangular frame attached on the left, and a Color Sensor and Force Sensor connected by cables on the right.">
+        </div>
+
+        <h2 class='proj-header'>Project 12: Fruit Scanner</h2>
+
+        <div class="proj-desc">
+            <p><strong>Objective:</strong> Make a machine learning model with the LEGO Spike Prime hub that works as a fruit scanner for apples and bananas.</p>
+            <p><strong>Training phase:</strong> Pressing the left arrow saves the Color Sensor's reading as an apple, and pressing the right arrow saves it as a banana, with a distinct sound for each. The data points are mapped into a 3D space. Once at least 3 examples are saved, pressing the Force Sensor completes training and puts the hub into inference mode.</p>
+            <p><strong>Inference phase:</strong> When I go up to an object and press the right button, the hub displays either apple or banana and plays the matching sound.</p>
+            <p><strong>The algorithm:</strong> The model uses the k-nearest neighbor algorithm for the inference phase. From my understanding, the input is placed in a 3D space based on its RGB values. We collect a lot of data so that there are gradients of a color around some point in that space. A new RGB reading is then placed in the same space, and its nearest neighbors determine the output. We used k=3, so the three nearest data points vote on the output.</p>
+            <p>The main struggle this time was understanding how the algorithm would work, since this was my introduction to machine learning.</p>
+        </div>
+
+        <div class="proj-img-container">
+            <img src="./images/fruit_scanner/back-view.jpeg" alt="Back of the same build on a wooden table, showing the yellow underside of the hub, the pink frame, and the two sensors connected by cables.">
+        </div>
+
+        <div class="proj-desc">
+            <p>Here is the part of the code that runs when I press the right button in inference mode. It finds the distance from the new reading to every saved example, then the three nearest examples vote on the result.</p>
+        </div>
+
+        <div class="proj-code">
+            <h3>Code:</h3>
+            <pre><code>
+# Read the object as a point in red-green-blue space.
+red, green, blue, intensity = color_sensor.rgbi(port.E)
+
+# Find the squared 3D distance to every saved example.
+# Squared distances preserve which examples are nearest.
+distances = []
+for example in examples:
+    red_difference = red - example[0]
+    green_difference = green - example[1]
+    blue_difference = blue - example[2]
+
+    distance = (
+        red_difference * red_difference
+        + green_difference * green_difference
+        + blue_difference * blue_difference
+    )
+    distances.append((distance, example[3]))
+
+# Put the nearest saved examples first.
+distances.sort()
+
+# The 3 nearest examples vote on the result.
+apple_votes = 0
+banana_votes = 0
+for neighbor_number in range(3):
+    if distances[neighbor_number][1] == "apple":
+        apple_votes += 1
+    else:
+        banana_votes += 1
+
+# Display the winning fruit and play its sound.
+if apple_votes &gt; banana_votes:
+    await light_matrix.write("APPLE")
+    await sound.beep(APPLE_SOUND_HZ, SOUND_LENGTH_MS)
+else:
+    await light_matrix.write("BANANA")
+    await sound.beep(BANANA_SOUND_HZ, SOUND_LENGTH_MS)
+
+</code></pre></div>
+
+        <div class="proj-video-container">
+            <iframe src="https://www.youtube.com/embed/su3ZhsTguGM" title="Fruit scanner demonstration video" allowfullscreen></iframe>
+        </div>
+
+    </div>
+    <!-- End Project Information -->
+
+</body>
+</html>
