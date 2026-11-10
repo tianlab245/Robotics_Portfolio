@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Project 13: Reinforcement Learning</title>
+    <link rel="stylesheet" href="./project.css">
+</head>
+<body>
+
+    <!-- Header and Navigation Section -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="./index.html" class="active">Home</a>
+        </nav>
+    </header>
+
+    <!-- Project Information -->
+    <div class="proj-container">
+
+        <h1 class='proj-header'>Project Portfolio</h1>
+
+        <div class="proj-img-container">
+            <img src="./images/reinforcement_learning/hero.jpeg" alt="LEGO Spike Prime hub connected to a motor that swings a black beam arm with a sensor at its end, next to an arc of yellow, blue, green, magenta, and red bricks between two black end pieces.">
+        </div>
+
+        <h2 class='proj-header'>Project 13: Reinforcement Learning</h2>
+
+        <div class="proj-desc">
+            <p>In this project, I learned how reinforcement learning works using a color finder machine built with LEGO Spike Prime.</p>
+            <p><strong>How reinforcement learning works:</strong> The agent (the brain) chooses an action, and the environment reacts. The robot reads its new state with its sensor and gets a reward, or a penalty (a negative reward), depending on whether the result was good or bad. By linking each state and action with the reward it got, the agent learns which actions are good. It starts out completely blank, with just the algorithm and a platform to work in.</p>
+            <p><strong>Exploration vs. exploitation:</strong> Exploitation means using what the model has already learned, while exploration means trying random actions so the agent can keep learning. A good model balances the two. The exploration rate follows a decay graph: the agent explores a lot at the start and mostly exploits by the end.</p>
+            <p><strong>The Q-table:</strong> The agent keeps score in a Q-table, which is displayed in the console. Each row is a state (where am I?), each column is an action (what can I do?), and each cell holds a Q-value: a score for how good that action is in that state. All the Q-values start at 0. During training, the machine tries actions and updates the Q-values based on the rewards and penalties it gets. Afterwards, it switches to the inference phase, where it uses the Q-table to choose its actions. The best action in each state is the one with the most positive Q-value.</p>
+            <p><strong>Reading our Q-table:</strong> The states are the colors the sensor reads, and the actions include turning left and turning right. At magenta, turning right was the best move: still negative, but the least negative. At red, turning left was the least negative. At azure, turning right had the most positive value, and at yellow, turning right was almost always the best move.</p>
+        </div>
+
+        <div class="proj-video-container">
+            <iframe src="https://www.youtube.com/embed/ONZ_-Ei00WU" title="Reinforcement learning color finder demonstration video" allowfullscreen></iframe>
+        </div>
+
+    </div>
+    <!-- End Project Information -->
+
+</body>
+</html>
